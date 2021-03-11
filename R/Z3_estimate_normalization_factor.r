@@ -70,21 +70,18 @@ BridgeRNormalizationFactors <- function(InputFile, group, hour, InforColumn = 4,
             png(filename=figfile,width = 1200, height = 1200)
             
             p.scatter <- ggplot()
-            p.scatter <- p.scatter + layer(data=plot_data, 
+            p.scatter <- p.scatter + geom_line(data=plot_data, 
                                            mapping=aes(x=time_data, y=exp_data, group=class_data), 
-                                           geom="line",
                                            colour="black",
                                            size=0.02,
                                            alpha=0.05)
-            p.scatter <- p.scatter + layer(data=plot_data_quantile_99, 
+            p.scatter <- p.scatter + geom_line(data=plot_data_quantile_99, 
                                            mapping=aes(x=hour, y=quantile_99_data), 
-                                           geom="line",
                                            colour="red",
                                            size=0.5,
                                            alpha=1)
-            p.scatter <- p.scatter + layer(data=plot_data_quantile_95, 
+            p.scatter <- p.scatter + geom_line(data=plot_data_quantile_95, 
                                            mapping=aes(x=hour, y=quantile_95_data), 
-                                           geom="line",
                                            colour="blue",
                                            size=0.5,
                                            alpha=1)
