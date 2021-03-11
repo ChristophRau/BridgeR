@@ -71,9 +71,8 @@ BridgeRHalfSD <- function(HalflifeFiles = c("BridgeR_6_HalfLife_Pvalue_estimatio
     png(filename="Histgram_HalfLife_variance.png",width = 600, height = 600)
     
     p <- ggplot()
-    p <- p + layer(data = Half_variance_table,
+    p <- p + geom_bar(data = Half_variance_table,
                    mapping = aes(x=Half_variance),
-                   geom = "bar",
                    geom_params = list(fill = "steelblue", color = "white"),
                    stat = "bin",
                    stat_params = list(binwidth = 0.1))
@@ -132,9 +131,8 @@ BridgeRHalfSD <- function(HalflifeFiles = c("BridgeR_6_HalfLife_Pvalue_estimatio
     png(filename="RPKM_mean_vs_HalfLife_SD.png",width = 600, height = 600)
     
     p <- ggplot()
-    p <- p + layer(data = fig_data,
+    p <- p + geom_point(data = fig_data,
                    mapping = aes(x=as.numeric(RPKM_mean), y=as.numeric(Half_SD)),
-                   geom = "point",
                    alpha=0.4)
     p <- p + xlab("RPKM mean") + ylab("Half-life SD")
     p <- p + xlim(0,100) + ylim(0,10)
@@ -148,9 +146,8 @@ BridgeRHalfSD <- function(HalflifeFiles = c("BridgeR_6_HalfLife_Pvalue_estimatio
     png(filename="HalfLife_mean_vs_HalfLife_SD.png",width = 600, height = 600)
     
     p <- ggplot()
-    p <- p + layer(data = fig_data,
+    p <- p + geom_point(data = fig_data,
                    mapping = aes(x=as.numeric(Half_mean), y=as.numeric(Half_SD)), #, colour=factor(color_vec)),
-                   geom = "point",
                    alpha=0.4)
     p <- p + xlab("Half-life mean") + ylab("Half-life SD")
     p <- p + xlim(0,24) + ylim(0,15)
