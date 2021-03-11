@@ -193,9 +193,8 @@ BridgeReport <- function(filename1 = "siStealth_compatible_genes_RefSeq_result_m
                     time_point_exp_for_test <- select_exp_data(time_point_exp, input$select2)
                 }
 
-                p <- p + layer(data=time_point_exp_for_test, 
+                p <- p + geom_point(data=time_point_exp_for_test, 
                                mapping=aes(x=hour, y=exp), 
-                               geom="point",
                                size=4,
                                shape=19,
                                colour=fig_color)
@@ -220,9 +219,8 @@ BridgeReport <- function(filename1 = "siStealth_compatible_genes_RefSeq_result_m
                             fig_data <- data.frame(hour=time_point_exp_for_test$hour)
                             predicted <- as.numeric(as.vector(as.matrix(predict(model, fig_data))))
                             fig_data$exp <- exp(as.vector(as.matrix(predicted)))
-                            p <- p + layer(data=fig_data,
+                            p <- p + geom_line(data=fig_data,
                                            mapping=(aes(x=hour, y=exp)),
-                                           geom="line",
                                            size=1.2,
                                            colour=fig_color)
                         }else{
