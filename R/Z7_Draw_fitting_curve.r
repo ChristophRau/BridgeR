@@ -89,9 +89,8 @@ BridgeRDraw <- function(InputFile="BridgeR_5C_HalfLife_calculation_R2_selection.
                     }
                     
                     #Draw_time_points
-                    p <- p + layer(data = time_point_exp_original,
+                    p <- p + geom_point(data = time_point_exp_original,
                                    mapping = aes(x = hour, y = exp),
-                                   geom="point",
                                    size = 4,
                                    shape = 19,
                                    colour = fig_color)
@@ -109,9 +108,8 @@ BridgeRDraw <- function(InputFile="BridgeR_5C_HalfLife_calculation_R2_selection.
                                 predicted <- as.numeric(as.vector(as.matrix(predict(model, fig_data))))
                                 fig_data$exp <- exp(as.vector(as.matrix(predicted)))
                                 
-                                p <- p + layer(data=fig_data,
+                                p <- p + geom_line(data=fig_data,
                                                mapping=(aes(x=hour, y=exp)),
-                                               geom="line",
                                                size=1.2,
                                                colour=fig_color)
                                 
@@ -144,8 +142,7 @@ BridgeRDraw <- function(InputFile="BridgeR_5C_HalfLife_calculation_R2_selection.
                                         }else if(model == "model3"){
                                             model_curve_1 <- function(t){(c_3_1) * exp(-a_3_1 * t) + (1.0 - c_3_1) * exp(-b_3_1 * t)}
                                         }
-                                        p <- p + layer(geom="path",
-                                                       stat="function",
+                                        p <- p + geom_path(stat="function",
                                                        fun=model_curve_1,
                                                        mapping=aes(color="model_curve_1"),
                                                        size=1.2)
@@ -164,8 +161,7 @@ BridgeRDraw <- function(InputFile="BridgeR_5C_HalfLife_calculation_R2_selection.
                                         }else if(model == "model3"){
                                             model_curve_2 <- function(t){(c_3_2) * exp(-a_3_2 * t) + (1.0 - c_3_2) * exp(-b_3_2 * t)}
                                         }
-                                        p <- p + layer(geom="path",
-                                                       stat="function",
+                                        p <- p + geom_path(stat="function",
                                                        fun=model_curve_2,
                                                        mapping=aes(color="model_curve_2"),
                                                        size=1.2)
@@ -300,9 +296,8 @@ BridgeRDrawFittingCurve <- function(filename="BridgeR_4_Normalized_expression_da
             time_point_exp_original <- data.frame(hour,exp)
             
             #p.fitting <- ggplot() #
-            p.fitting <- p.fitting + layer(data=time_point_exp_original, 
+            p.fitting <- p.fitting + geom_point(data=time_point_exp_original, 
                                            mapping=aes(x=hour, y=exp), 
-                                           geom="point",
                                            size=4,
                                            shape=19,
                                            colour=fig_color)
@@ -392,14 +387,12 @@ BridgeRDrawFittingCurve <- function(filename="BridgeR_4_Normalized_expression_da
                     predicted2_ribbon$exp_minus <- exp(as.vector(as.matrix(pred_conf[,2])))
                     predicted2_ribbon$exp_plus <- exp(as.vector(as.matrix(pred_conf[,3])))
 
-                    p.fitting <- p.fitting + layer(data=predicted2,
+                    p.fitting <- p.fitting + geom_line(data=predicted2,
                                                    mapping=(aes(x=hour, y=exp)),
-                                                   geom="line",
                                                    size=1.2,
                                                    colour=fig_color)
-                    p.fitting <- p.fitting + layer(data=predicted2_ribbon,
+                    p.fitting <- p.fitting + geom_ribbon(data=predicted2_ribbon,
                                                    mapping=aes(x=hour,ymin=exp_minus,ymax=exp_plus),
-                                                   geom="ribbon",
                                                    alpha=0.1,
                                                    fill=fig_color)
                     p.fitting <- p.fitting + ggtitle(gene_name)
