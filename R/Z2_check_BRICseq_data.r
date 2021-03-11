@@ -107,9 +107,9 @@ BridgeRDatasetChecker <- function(InputFile, group, hour, InforColumn=4, OutputF
         
         ###fig_plot###
         p <- ggplot()
-        p <- p + layer(data=fig_data,
-                       mapping=aes(x=label,y=exp),
-                       geom="boxplot")
+        p <- p + geom_boxplot(data=fig_data,
+                       mapping=aes(x=label,y=exp)
+                       )
         p <- p + ylim(-2,2)
         plot(p)
         dev.off() #close_fig
@@ -121,9 +121,8 @@ BridgeRDatasetChecker <- function(InputFile, group, hour, InforColumn=4, OutputF
         
         ###fig_plot2###
         p <- ggplot()
-        p <- p + layer(data=fig_data,
+        p <- p + geom_line(data=fig_data,
                        mapping=aes(x=exp,colour=label),
-                       geom="line",
                        stat="density",
                        size=1.2)
         p <- p + xlim(-2,2) + ylim(0,7)
@@ -138,9 +137,8 @@ BridgeRDatasetChecker <- function(InputFile, group, hour, InforColumn=4, OutputF
         
         ###fig_plot3###
         p <- ggplot()
-        p <- p + layer(data=exp_percentile_data,
+        p <- p + geom_point(data=exp_percentile_data,
                        mapping=aes(x=name, y=q, colour=factor(factor)),
-                       geom="point",
                        size=5,
                        shape=19)
         p <- p + xlab("") + ylab("Relative RPKM (Time0 = 1)")
@@ -168,9 +166,8 @@ BridgeRDatasetChecker <- function(InputFile, group, hour, InforColumn=4, OutputF
     ###fig_plot###
     merge_fig_data$label <- factor(merge_fig_data$label, levels=sort(unique(as.character(merge_fig_data$label))))
     p <- ggplot()
-    p <- p + layer(data=merge_fig_data,
-                   mapping=aes(x=label,y=exp),
-                   geom="boxplot")
+    p <- p + geom_boxplot(data=merge_fig_data,
+                   mapping=aes(x=label,y=exp))
     p <- p + ylim(-2,2)
     plot(p)
     dev.off() #close_fig
@@ -193,9 +190,8 @@ BridgeRDatasetChecker <- function(InputFile, group, hour, InforColumn=4, OutputF
     ###fig_plot###
     merge_fig_percentile_data$name <- factor(merge_fig_percentile_data$name, levels=sort(unique(as.character(merge_fig_percentile_data$name))))
     p <- ggplot()
-    p <- p + layer(data=merge_fig_percentile_data,
+    p <- p + geom_point(data=merge_fig_percentile_data,
                    mapping=aes(x=name, y=q, colour=factor(factor)),
-                   geom="point",
                    size=5,
                    shape=19)
     p <- p + xlab("") + ylab("Relative RPKM (Time0 = 1)")
