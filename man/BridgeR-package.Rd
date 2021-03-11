@@ -23,7 +23,6 @@ Maintainer: Naoto Imamachi
 \references{
 https://github.com/Naoto-Imamachi/BRIC-seq_data_analysis/tree/master/BridgeR
 }
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R documentation directory ~~
 \keyword{ BRIC-seq }
 \seealso{
 
