@@ -1,6 +1,9 @@
 # BridgeR
 An R library for comprehensive BRIC-seq data analysis tool.  
 BridgeR library was made under R version 3.2.2.
+
+I (Christoph) have updated the package to work with the latest version of R (4.0.4) and ggplot2 (3.3.3)
+
 ***
 ##Dependencies (Required R libraries)
 data.table  
