@@ -117,16 +117,14 @@ BridgeRHalfLifeComparison <- function(filename = "BridgeR_5C_HalfLife_calculatio
     print(print_out3)
     
     p.scatter <- ggplot()
-    p.scatter <- p.scatter + layer(data=plot_data, 
+    p.scatter <- p.scatter + geom_point(data=plot_data, 
                                    mapping=aes(x=half_1_fig, y=half_2_fig,colour=factor(factor_fig)), 
-                                   geom="point",
                                    #colour="black",
                                    size=2.5,
                                    alpha=0.3)
     
-    p.scatter <- p.scatter + layer(data=plot_data, 
+    p.scatter <- p.scatter + geom_smooth(data=plot_data, 
                                    mapping=aes(x=half_1_fig, y=half_2_fig),
-                                   geom="smooth",
                                    geom_params=list(color = "blue", size=1.2),
                                    stat="smooth",
                                    stat_params=list(method="lm", se=F))
@@ -190,9 +188,8 @@ BridgeRHalfLifeDistribution <- function(filename = "BridgeR_5C_HalfLife_calculat
     }
 
     p.scatter <- ggplot()
-    p.scatter <- p.scatter + layer(data=half_life_fig, 
+    p.scatter <- p.scatter + geom_freqpoly(data=half_life_fig, 
                                    mapping=aes(x=half_life_data, colour=Sample), 
-                                   geom="freqpoly",
                                    binwidth=0.1,
                                    #geom="line",
                                    #stat="density",
@@ -280,9 +277,8 @@ BridgeRHalfLifeDifferenceHist <- function(filename = "BridgeR_5C_HalfLife_calcul
     plot_data <- data.frame(div_half)
 
     p.scatter <- ggplot()
-    p.scatter <- p.scatter + layer(data=plot_data, 
+    p.scatter <- p.scatter + geom_freqpoly(data=plot_data, 
                                    mapping=aes(x=div_half), 
-                                   geom="freqpoly",
                                    binwidth=BinwidthFig,
                                    #geom="line",
                                    #stat="density",
@@ -378,9 +374,8 @@ BridgeRHalfLifeDifferenceBox <- function(filename = "BridgeR_5C_HalfLife_calcula
     plot_data <- rbind(plot_data_1,plot_data_2)
 
     p.boxplot <- ggplot()
-    p.boxplot <- p.boxplot + layer(data=plot_data, 
-                                   mapping=aes(x=label, y=half_data), 
-                                   geom="boxplot")
+    p.boxplot <- p.boxplot + geom_boxplot(data=plot_data, 
+                                   mapping=aes(x=label, y=half_data))
     p.boxplot <- p.boxplot + ylim(0,24)
     p.boxplot <- p.boxplot + ggtitle("Half-life difference")
     p.boxplot <- p.boxplot + ylab("Half-life")
